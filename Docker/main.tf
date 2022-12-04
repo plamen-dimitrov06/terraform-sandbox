@@ -22,6 +22,8 @@ resource "docker_image" "img-web" {
 resource "docker_container" "con-db" {
 	name = "db"
 	image = docker_image.img-db.latest
+	# dont pass passwords like this, this is only a demo
+	#
 	env = ["MYSQL_ROOT_PASSWORD=Password1"]
 	networks_advanced {
 		name = docker_network.app-net.id
@@ -39,6 +41,9 @@ resource "docker_container" "con-web" {
 		external = 8080
 	}
 	volumes {
+		# this is where you mount your application
+		# for this example https://github.com/shekeriev/bgapp was ued
+		#
 		host_path = "${path.cwd}/bgapp/web"
 		container_path = "/var/www/html"
 	}
