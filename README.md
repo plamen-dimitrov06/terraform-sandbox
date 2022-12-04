@@ -1,4 +1,4 @@
-# Intorduction
+# Introduction
 Dabbling in Terraform.
 
 ## Environment
