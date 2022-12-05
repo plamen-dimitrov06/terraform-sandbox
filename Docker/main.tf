@@ -24,7 +24,7 @@ resource "docker_container" "con-db" {
 	image = docker_image.img-db.latest
 	# dont pass passwords like this, this is only a demo
 	#
-	env = ["MYSQL_ROOT_PASSWORD=Password1"]
+	env = ["MYSQL_ROOT_PASSWORD=${var.db_pass}"]
 	networks_advanced {
 		name = docker_network.app-net.id
 	}
@@ -33,7 +33,7 @@ resource "docker_container" "con-db" {
 resource "docker_container" "con-web" {
 	name = "bgapp"
 	image = docker_image.img-web.latest
-	env = ["MYSQL_ROOT_PASSWORD=Password1"]
+	env = ["MYSQL_ROOT_PASSWORD=${var.db_pass}"]
 	networks_advanced {
 		name = docker_network.app-net.id
 	}
