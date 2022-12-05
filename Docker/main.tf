@@ -33,6 +33,7 @@ resource "docker_container" "con-db" {
 resource "docker_container" "con-web" {
 	name = "bgapp"
 	image = docker_image.img-web.latest
+	env = ["MYSQL_ROOT_PASSWORD=Password1"]
 	networks_advanced {
 		name = docker_network.app-net.id
 	}
